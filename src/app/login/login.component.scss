@@ -1,0 +1,152 @@
+$primary-color: #203844;
+$secondary-color: #d63032;
+
+.login-container {
+  width: 80vw;
+  height: 80vh;
+  margin: 10vh 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+
+  > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 40px;
+  }
+}
+
+.left-container {
+  h1 {
+    align-self: flex-start;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .input {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      input {
+        margin-bottom: 0.5rem;
+        padding: 5px;
+      }
+    }
+
+    button {
+      padding: 5px;
+      background: linear-gradient(to right, $primary-color, $secondary-color);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+
+      .remember-me-wrapper {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+
+    .forgot-password {
+      align-self: flex-end;
+      color: $secondary-color;
+      cursor: pointer;
+      font-style: italic;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: $secondary-color;
+      }
+    }
+  }
+}
+
+.right-container {
+  height: 100%;
+  background: linear-gradient(
+    to bottom right,
+    $primary-color,
+    $secondary-color
+  );
+  background-clip: padding-box;
+  border-radius: 0 8px 8px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+
+  a {
+    color: #fff;
+  }
+
+  .seperator {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+
+    hr {
+      flex-grow: 1; /* Allow both hr elements to grow equally */
+      height: 1.6px; /* Define the height of the hr */
+      background-color: #fff; /* Customize the hr's color */
+      margin: 0; /* Reset default margins for hr elements */
+      border: none; /* Remove hr's default border */
+      width: 50px; /* Set the width of the hr elements */
+    }
+
+    p {
+      margin: 0 1rem;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+      padding: 5px;
+      border-radius: 10px;
+      background-color: #fff;
+      color: $secondary-color;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    li:hover {
+      background: linear-gradient(
+        to bottom left,
+        $primary-color,
+        $secondary-color
+      );
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
