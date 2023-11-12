@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginFormService } from './login-form.service';
 
 @Component({
   selector: 'app-login-form',
@@ -12,7 +13,10 @@ export class LoginFormComponent {
   usernameMinLength: number = 3;
   passwordMinLength: number = 8;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private loginFormService: LoginFormService
+  ) {
     this.myForm = this.fb.group({
       username: [
         '',
@@ -30,5 +34,14 @@ export class LoginFormComponent {
     console.log(this.myForm.value);
 
     this.isSubmitted = true;
+
+    this.loginFormService.login(this.myForm.value).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
