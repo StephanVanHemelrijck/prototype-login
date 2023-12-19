@@ -1,15 +1,28 @@
 <div class="login-container">
   <div class="left-container">
-    <h1>Sign In</h1>
+    <h1>{{ isRegistering ? "Sign up" : "Sign in" }}</h1>
 
-    <app-login-form></app-login-form>
+    <ng-container *ngIf="isRegistering; else notRegistering">
+      <app-register-form></app-register-form>
+    </ng-container>
+    <ng-template #notRegistering>
+      <app-login-form></app-login-form>
+    </ng-template>
   </div>
 
   <div class="right-container">
     <h1>Welcome to XYZ</h1>
 
-    <p>Don't have an account?</p>
-    <a href="#">Sign Up</a>
+    <p>
+      {{
+        isRegistering
+          ? "Already have an account?"
+          : "Don't have an account yet?"
+      }}
+    </p>
+    <a href="#" (click)="changeMode()">{{
+      isRegistering ? "Sign in" : "Sign up"
+    }}</a>
 
     <div class="seperator">
       <hr />
