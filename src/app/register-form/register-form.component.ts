@@ -77,9 +77,6 @@ export class RegisterFormComponent {
   }
 
   onSubmit(): void {
-    console.log('form submitted');
-    console.log(this.myForm.value);
-
     this.registerFormService.register(this.myForm.value).subscribe((result) => {
       let user = {
         uid: result.uid,

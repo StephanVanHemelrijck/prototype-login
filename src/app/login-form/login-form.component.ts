@@ -36,9 +36,6 @@ export class LoginFormComponent {
   }
 
   onSubmit(): void {
-    console.log('Form submitted!');
-    console.log(this.myForm.value);
-
     this.isSubmitted = true;
 
     this.loginFormService.login(this.myForm.value).subscribe(

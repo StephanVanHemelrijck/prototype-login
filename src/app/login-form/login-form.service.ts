@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginFormService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://login-backend-62m7.onrender.com';
   constructor(private http: HttpClient) {}
 
   login(data: any): Observable<any> {

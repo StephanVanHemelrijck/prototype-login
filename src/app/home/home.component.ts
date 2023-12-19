@@ -18,7 +18,6 @@ export class HomeComponent {
   ngOnInit(): void {
     // Get the logged in user from the auth service
     let user = this.authService.getLoggedInUser();
-    console.log(user);
 
     this.username = user.username;
     this.roleName = user.role.name;
