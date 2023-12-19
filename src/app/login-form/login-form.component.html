@@ -1,31 +1,29 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="input">
-    <label for="username">Username</label>
+    <label for="email">Email</label>
     <input
-      type="text"
-      name="username"
-      id="username"
+      type="email"
+      name="email"
+      id="email"
       autocomplete="on"
       required="true"
-      formControlName="username"
+      formControlName="email"
     />
     <div
       *ngIf="
-        myForm.get('username')?.hasError('required') &&
-        myForm.get('username')?.dirty
+        myForm.get('email')?.hasError('required') && myForm.get('email')?.dirty
       "
       class="error"
     >
-      Username is required.
+      Email is required.
     </div>
     <div
       *ngIf="
-        myForm.get('username')?.hasError('minlength') &&
-        myForm.get('username')?.dirty
+        myForm.get('email')?.hasError('minlength') && myForm.get('email')?.dirty
       "
       class="error"
     >
-      Username must be at least {{ usernameMinLength }} characters long.
+      Email must be at least {{ emailMinLength }} characters long.
     </div>
 
     <label for="password">Password</label>

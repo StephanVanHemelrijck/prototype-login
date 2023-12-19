@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginFormService } from './login-form.service';
+import { Router } from '@angular/router';
+
+// Services
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,17 +14,19 @@ import { LoginFormService } from './login-form.service';
 export class LoginFormComponent {
   myForm: FormGroup;
   isSubmitted: boolean = false;
-  usernameMinLength: number = 3;
+  emailMinLength: number = 3;
   passwordMinLength: number = 8;
 
   constructor(
     private fb: FormBuilder,
-    private loginFormService: LoginFormService
+    private loginFormService: LoginFormService,
+    private router: Router,
+    private authService: AuthService
   ) {
     this.myForm = this.fb.group({
-      username: [
+      email: [
         '',
-        [Validators.required, Validators.minLength(this.usernameMinLength)],
+        [Validators.required, Validators.minLength(this.emailMinLength)],
       ],
       password: [
         '',
@@ -37,7 +43,26 @@ export class LoginFormComponent {
 
     this.loginFormService.login(this.myForm.value).subscribe(
       (result) => {
-        console.log(result);
+        let user = {
+          uid: result.uid,
+          email: result.email,
+          access_token: result.stsTokenManager.accessToken,
+          refresh_token: result.stsTokenManager.refreshToken,
+          username: '',
+          role: {},
+        };
+
+        // Get the user from the backend
+        this.loginFormService.getUserData(user.uid).subscribe((result) => {
+          user.username = result.username;
+          user.role = result.role;
+
+          // Set the user in the auth service
+          this.authService.setLoggedInUser(user);
+
+          // Rediret to home page
+          this.router.navigate(['home']);
+        });
       },
       (error) => {
         console.log(error);
